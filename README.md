@@ -1,29 +1,59 @@
-# Create T3 App
+# 🌐 Portfolio - ZitBledi
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+Bienvenue sur mon portfolio personnel, développé avec la **T3 Stack** (Next.js, TypeScript, Tailwind CSS, tRPC).  
+Ce site met en valeur mon parcours, mes compétences techniques et mes projets en cybersécurité et développement web.
 
-## What's next? How do I make an app with this?
+---
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+## 🚀 Stack technique
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+- **Next.js (App Router)** – Framework React moderne et rapide
+- **Tailwind CSS** – Styling responsive et personnalisable
+- **TypeScript** – Typage robuste pour un code fiable
+- **tRPC** – Communication type-safe sans surcouche API
+- **ESLint & Prettier** – Code propre et formaté automatiquement
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Drizzle](https://orm.drizzle.team)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+---
 
-## Learn More
+## 🛡️ À propos de moi
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+Je suis développeur spécialisé en **cybersécurité** et passionné par les technologies web.  
+Ce portfolio a pour but de centraliser mes projets, partager mes compétences, et offrir un point de contact professionnel.
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+---
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+## 📁 Contenu du site
 
-## How do I deploy this?
+- Page d’accueil avec présentation
+- Projets techniques (démo + code source)
+- Compétences principales (dev + sécurité)
+- Section de contact et réseaux
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+---
+
+## 🌍 Déploiement
+
+Le site est déployé automatiquement via **Netlify** à chaque mise à jour du repository.
+
+➡️ **Live demo** : [https://zitbledi.netlify.app](https://zitbledi.netlify.app) *(ou ton futur lien)*
+
+---
+
+## 📫 Contact
+
+Tu peux me retrouver sur :
+
+- GitHub : [github.com/ZitBledi](https://github.com/ZitBledi)
+- LinkedIn : [linkedin.com/in/ton-profil](https://linkedin.com/in/ton-profil)
+- Email : `ton.email@example.com`
+
+---
+
+## ⚡️ Remarques
+
+> Ce projet évoluera avec de nouvelles fonctionnalités, intégrations, et peut-être une version backend/API complète à l’avenir.
+
+---
+
+### ⭐️ N’hésite pas à laisser une étoile si tu aimes le projet !
+
