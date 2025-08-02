@@ -13,7 +13,7 @@ export default function Projects() {
           </p>
           
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
+            {projects.map((project, _index) => (
               <div 
                 key={project.id}
                 className="bg-slate-900 rounded-xl p-6 hover:bg-slate-800 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl border border-slate-700 hover:border-cyan-500"

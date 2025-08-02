@@ -10,8 +10,8 @@ export default function Hero() {
             Développeur Cybersécurité & Expert en Sécurité Offensive
           </h2>
           <p className="text-xl text-slate-300 mb-12 max-w-3xl mx-auto leading-relaxed">
-            Spécialisé dans la sécurité offensive, les tests de pénétration et le développement d'outils de cybersécurité. 
-            Passionné par l'identification et la correction des vulnérabilités pour renforcer la sécurité des systèmes d'information.
+            Spécialisé dans la sécurité offensive, les tests de pénétration et le développement d&apos;outils de cybersécurité. 
+            Passionné par l&apos;identification et la correction des vulnérabilités pour renforcer la sécurité des systèmes d&apos;information.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 

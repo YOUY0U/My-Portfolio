@@ -7,7 +7,7 @@ export default function Contact() {
             Contactez-moi
           </h2>
           <p className="text-xl text-slate-400 mb-16 max-w-2xl mx-auto">
-            Prêt à collaborer sur vos projets de cybersécurité ? N'hésitez pas à me contacter !
+            Prêt à collaborer sur vos projets de cybersécurité ? N&apos;hésitez pas à me contacter !
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
