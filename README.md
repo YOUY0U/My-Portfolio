@@ -1,4 +1,4 @@
-# 🌐 Portfolio - ZitBledi
+# 🌐 Portfolio
 
 Bienvenue sur mon portfolio personnel, développé avec la **T3 Stack** (Next.js, TypeScript, Tailwind CSS, tRPC).  
 Ce site met en valeur mon parcours, mes compétences techniques et mes projets en cybersécurité et développement web.
@@ -35,16 +35,14 @@ Ce portfolio a pour but de centraliser mes projets, partager mes compétences, e
 
 Le site est déployé automatiquement via **Netlify** à chaque mise à jour du repository.
 
-➡️ **Live demo** : [https://zitbledi.netlify.app](https://zitbledi.netlify.app) *(ou ton futur lien)*
-
 ---
 
 ## 📫 Contact
 
 Tu peux me retrouver sur :
 
-- GitHub : [github.com/ZitBledi](https://github.com/ZitBledi)
-- LinkedIn : [linkedin.com/in/ton-profil](https://linkedin.com/in/ton-profil)
+- GitHub : [github.com/ZitBledi](https://github.com/)
+- LinkedIn : [linkedin.com/in/ton-profil](https://linkedin.com/in/)
 - Email : `ton.email@example.com`
 
 ---
