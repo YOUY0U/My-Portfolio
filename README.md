@@ -1,7 +1,7 @@
 # 🌐 Portfolio
 
 Bienvenue sur mon portfolio personnel, développé avec la **T3 Stack** (Next.js, TypeScript, Tailwind CSS, tRPC).  
-Ce site met en valeur mon parcours, mes compétences techniques et mes projets en cybersécurité et développement web.
+Ce site met en valeur mon parcours, mes compétences techniques et mes projets.
 
 ---
 
@@ -17,23 +17,9 @@ Ce site met en valeur mon parcours, mes compétences techniques et mes projets e
 
 ## 🛡️ À propos de moi
 
-Je suis développeur spécialisé en **cybersécurité** et passionné par les technologies web.  
+Je suis Ingénieur en **cybersécurité**.  
 Ce portfolio a pour but de centraliser mes projets, partager mes compétences, et offrir un point de contact professionnel.
 
----
-
-## 📁 Contenu du site
-
-- Page d’accueil avec présentation
-- Projets techniques (démo + code source)
-- Compétences principales (dev + sécurité)
-- Section de contact et réseaux
-
----
-
-## 🌍 Déploiement
-
-Le site est déployé automatiquement via **Netlify** à chaque mise à jour du repository.
 
 ---
 
@@ -41,15 +27,10 @@ Le site est déployé automatiquement via **Netlify** à chaque mise à jour du 
 
 Tu peux me retrouver sur :
 
-- GitHub : [github.com/ZitBledi](https://github.com/)
-- LinkedIn : [linkedin.com/in/ton-profil](https://linkedin.com/in/)
-- Email : `ton.email@example.com`
+- GitHub : [github.com/YOUY0U](https://github.com/YOUY0U)
+- LinkedIn : [linkedin.com/in/yoto](https://www.linkedin.com/in/yoto/)
+- Email : `yousseftounekti1@gmail.com`
 
----
-
-## ⚡️ Remarques
-
-> Ce projet évoluera avec de nouvelles fonctionnalités, intégrations, et peut-être une version backend/API complète à l’avenir.
 
 ---
 
