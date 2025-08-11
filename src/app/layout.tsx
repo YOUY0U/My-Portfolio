@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: "Portfolio de Youssef Tounekti, développeur spécialisé en cybersécurité et sécurité offensive. Expert en tests de pénétration et développement d'outils de sécurité.",
   keywords: ["cybersécurité", "pentesting", "développeur", "sécurité", "hacking éthique"],
   authors: [{ name: "Youssef Tounekti" }],
-  icons: [{ rel: "icon", url: "/favicon.ico" }],
+  icons: { icon: [{ url: "/logo-YT.jpeg", type: "image/jpeg" }] },
 };
 
 const geist = Geist({

@@ -12,7 +12,7 @@ export default function Navigation() {
       setIsScrolled(window.scrollY > 50);
       
       // Déterminer la section active
-      const sections = ['accueil', 'projets', 'competences', 'contact'];
+      const sections = ['accueil', 'projets', 'formation', 'competences', 'contact'];
       const scrollPosition = window.scrollY + 100;
       
       for (const section of sections) {
@@ -43,7 +43,9 @@ export default function Navigation() {
   const navItems = [
     { id: 'accueil', label: 'Accueil' },
     { id: 'projets', label: 'Projets' },
+    { id: 'formation', label: 'Formation' },
     { id: 'competences', label: 'Compétences' },
+    { id: 'badges-stats', label: 'Badges & Stats' },
     { id: 'contact', label: 'Contact' }
   ];
 

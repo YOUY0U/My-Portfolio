@@ -7,11 +7,11 @@ export default function Hero() {
             Youssef Tounekti
           </h1>
           <h2 className="text-2xl md:text-3xl text-cyan-400 mb-8 font-light">
-            Développeur Cybersécurité & Expert en Sécurité Offensive
+            Ingénieur Cybersécurité | Sécurité Offensive & DevSecOps
           </h2>
           <p className="text-xl text-slate-300 mb-12 max-w-3xl mx-auto leading-relaxed">
-            Spécialisé dans la sécurité offensive, les tests de pénétration et le développement d&apos;outils de cybersécurité. 
-            Passionné par l&apos;identification et la correction des vulnérabilités pour renforcer la sécurité des systèmes d&apos;information.
+            Spécialisé en cybersécurité offensive et en intégration DevSecOps, je conçois des solutions innovantes pour la détection et la remédiation des vulnérabilités. 
+            Passionné par l&apos;automatisation, l&apos;IA appliquée à la sécurité et le développement d&apos;outils de pentesting pour renforcer la résilience des systèmes d&apos;information.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 

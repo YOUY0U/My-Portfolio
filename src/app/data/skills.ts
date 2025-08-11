@@ -1,6 +1,9 @@
 export interface Skill {
   name: string;
-  emoji: string;
+  emoji?: string;
+  icon?: string;
+  scores?: string[];
+  level?: string;
 }
 
 export interface SkillCategory {
@@ -40,6 +43,15 @@ export const skills: SkillCategory[] = [
       { name: "React", emoji: "⚛️" },
       { name: "Node.js", emoji: "💚" },
       { name: "Next.js", emoji: "▲" }
+    ]
+  },
+  {
+    name: "Langues",
+    items: [
+      { name: "Anglais", icon: "/united-kingdom.png", scores: ["IELTS 6/9", "TOEIC 825/990"], level: "Niveau B2/C1" },
+      { name: "Français", icon: "/france.png", level: "Natif" },
+      { name: "Arabe", icon: "/dhad.png", level: "Natif" },
+      { name: "Espagnol", icon: "/spanish.png", level: "Niveau A2" }
     ]
   }
 ];

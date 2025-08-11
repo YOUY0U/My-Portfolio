@@ -3,32 +3,28 @@ export interface Project {
   title: string;
   description: string;
   technologies: string[];
-  githubUrl: string;
+  githubUrl?: string;
   demoUrl?: string;
 }
 
 export const projects: Project[] = [
   {
     id: 1,
-    title: "SecScan Pro",
-    description: "Outil automatisé de scan de vulnérabilités développé en Python. Capable d'identifier les failles OWASP Top 10 et de générer des rapports détaillés avec recommandations de sécurisation.",
-    technologies: ["Python", "Nmap", "SQLMap", "Flask", "Docker"],
-    githubUrl: "https://github.com/yousseftounekti/secscan-pro",
-    demoUrl: "https://secscan-demo.com"
+    title: "Web Vulnerability Scanner",
+    description: "Outil avancé d'analyse de vulnérabilités web conçu pour détecter automatiquement les failles critiques telles que les injections SQL, XSS, et XML, en se basant sur les standards OWASP. Il intègre des stratégies de remédiation basées sur l'intelligence artificielle, permettant de réduire les risques de sécurité jusqu'à 40 %.",
+    technologies: ["Python", "OWASP", "IA", "SQLi", "XSS"],
+    githubUrl: "https://github.com/YOUY0U/web-vuln-scanner"
   },
   {
     id: 2,
-    title: "PentestKit",
-    description: "Suite d'outils de pentest personnalisés incluant un générateur de payload, un scanner de ports avancé et un module d'exploitation automatisé. Interface CLI intuitive avec support multi-threading.",
-    technologies: ["Go", "Bash", "Metasploit", "Burp Suite API", "Linux"],
-    githubUrl: "https://github.com/yousseftounekti/pentestkit",
+    title: "Cluster Cloud",
+    description: "Mise en place d'un cluster cloud composé de 3 machines virtuelles, incluant un serveur web, une base de données MariaDB, et un équilibrage de charge via HAProxy. Configuration d'un nom de domaine eu.org ainsi qu'un serveur de messagerie Postfix, avec des fonctionnalités de surveillance et maintenance pour assurer la stabilité et la performance du cluster.",
+    technologies: ["HAProxy", "MariaDB", "Postfix", "Linux", "Cloud"]
   },
   {
     id: 3,
-    title: "CyberSecure Dashboard",
-    description: "Dashboard en temps réel pour le monitoring de sécurité avec détection d'intrusions, analyse de logs et alertes automatiques. Interface web moderne avec graphiques interactifs.",
-    technologies: ["React", "Node.js", "ELK Stack", "MongoDB", "WebSocket"],
-    githubUrl: "https://github.com/yousseftounekti/cybersecure-dashboard",
-    demoUrl: "https://cybersecure-dashboard-demo.com"
+    title: "Bras Robotique MyCobot avec Contrôleur Android",
+    description: "Développement d'un système de télécommande sans fil pour opérer le bras robotique MyCobot, augmentant sa flexibilité et sa convivialité. Conception et mise en œuvre d'une interface de contrôle intuitive, assurant une utilisation facile et efficace pour les utilisateurs.",
+    technologies: ["Android", "Java", "Bluetooth", "Robotique", "UI/UX"]
   }
 ];

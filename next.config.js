@@ -5,6 +5,16 @@
 import "./src/env.js";
 
 /** @type {import("next").NextConfig} */
-const config = {};
+const config = {
+  images: {
+    // Autoriser les avatars Chess.com
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.chesscomfiles.com",
+      },
+    ],
+  },
+};
 
 export default config;
