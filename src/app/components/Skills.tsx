@@ -1,7 +1,24 @@
+/**
+ * Normalisation des données de compétences pour garantir des strings sûrs.
+ * Certains `skill.name` et `skill.icon` peuvent être indéfinis dans la source;
+ * on construit donc des fallbacks côté composant avant le rendu afin d'éviter
+ * les erreurs TypeScript (ex: alt nécessite un string, pas undefined).
+ */
 import { skills } from '../data/skills';
 import Image from 'next/image';
 
-export default function Skills() {
+export type Skill = {
+  name?: string;
+  icon?: string;
+  level?: number | string;
+  emoji?: string;
+  scores?: string[];
+  [k: string]: unknown;
+};
+
+type SkillsProps = { skills?: Array<{ name?: string; items: Skill[] }>; };
+
+export default function Skills(_props?: SkillsProps) {
   return (
     <section id="competences" className="min-h-screen bg-slate-900 py-20">
       <div className="container mx-auto px-6">
@@ -14,18 +31,26 @@ export default function Skills() {
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {skills.filter(category => category.name !== "Langues").map((category) => (
+            {skills.filter(category => category.name !== "Langues").map((category) => {
+              const normalized = (category.items ?? [])
+                .filter((s) => s && ((s as Skill).name || (s as Skill).icon || (s as Skill).emoji))
+                .map((s, i) => {
+                  const name = (s as Skill).name ?? `Skill ${i + 1}`;
+                  const icon = (s as Skill).icon ?? `/icons/${name.toLowerCase().replace(/\s+/g, '-')}.svg`;
+                  return { ...(s as Skill), name, icon };
+                });
+              return (
               <div 
-                key={category.name}
+                key={category.name ?? 'categorie'}
                 className="bg-slate-800 rounded-xl p-6 border border-slate-700 hover:border-cyan-500 transition-all duration-300"
               >
                 <h3 className="text-2xl font-bold text-cyan-400 mb-6 text-center">
                   {category.name}
                 </h3>
                 <div className="grid grid-cols-2 gap-4">
-                  {category.items.map((skill) => (
+                  {normalized.map((skill, idx) => (
                     <div 
-                      key={skill.name}
+                      key={skill.name || `skill-${idx}`}
                       className="flex flex-col items-center p-4 bg-slate-700 rounded-lg hover:bg-slate-600 transition-all duration-300 transform hover:scale-105"
                     >
                       <div className="text-4xl mb-3">
@@ -38,27 +63,37 @@ export default function Skills() {
                   ))}
                 </div>
               </div>
-            ))}
+            );})}
           </div>
           
           {/* Section Langues séparée et plus grande */}
-          {skills.filter(category => category.name === "Langues").map((category) => (
-            <div key={category.name} className="mt-12">
+          {skills.filter(category => category.name === "Langues").map((category) => {
+            const normalized = (category.items ?? [])
+              .filter((s) => s && ((s as Skill).name || (s as Skill).icon || (s as Skill).emoji))
+              .map((s, i) => {
+                const name = (s as Skill).name ?? `Skill ${i + 1}`;
+                const icon = (s as Skill).icon ?? `/icons/${name.toLowerCase().replace(/\s+/g, '-')}.svg`;
+                return { ...(s as Skill), name, icon };
+              });
+            return (
+            <div key={category.name ?? 'Langues'} className="mt-12">
               <div className="bg-slate-800 rounded-xl p-8 border border-slate-700 hover:border-cyan-500 transition-all duration-300">
                 <h3 className="text-2xl font-bold text-cyan-400 mb-8 text-center">
                   {category.name}
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                  {category.items.map((skill) => (
+                  {normalized.map((skill, idx) => {
+                    const displayName = (skill.name as string).split('\n')[0];
+                    return (
                     <div 
-                      key={skill.name}
+                      key={skill.name || `lang-skill-${idx}`}
                       className="flex flex-col items-center p-6 bg-slate-700 rounded-lg hover:bg-slate-600 transition-all duration-300 transform hover:scale-105"
                     >
                       <div className="w-16 h-16 mb-4 flex items-center justify-center">
                         {skill.icon ? (
                           <Image
                             src={skill.icon}
-                            alt={skill.name.split('\n')[0]}
+                            alt={`${displayName} logo`}
                             width={64}
                             height={64}
                             className="rounded-full object-cover"
@@ -71,7 +106,7 @@ export default function Skills() {
                       </div>
                       <div className="text-center">
                         <h4 className="text-white font-bold text-base mb-2">
-                          {skill.name.split('\n')[0]}
+                          {displayName}
                         </h4>
                         {skill.scores && (
                           <div className="space-y-1 mb-2">
@@ -92,11 +127,11 @@ export default function Skills() {
 
                       </div>
                     </div>
-                  ))}
+                  );})}
                 </div>
               </div>
             </div>
-          ))}
+          );})}
         </div>
       </div>
     </section>
