@@ -66,14 +66,14 @@ export async function GET() {
 
     if (!profileRes.ok) {
       return NextResponse.json(
-        { error: true, status: profileRes.status, body: profileRes.body },
-        { status: profileRes.status, headers: { "Cache-Control": CACHE_HEADER } },
+        { error: true, status: profileRes.status, message: "Chess.com profile fetch failed", body: profileRes.body },
+        { status: 200, headers: { "Cache-Control": CACHE_HEADER } },
       );
     }
     if (!statsRes.ok) {
       return NextResponse.json(
-        { error: true, status: statsRes.status, body: statsRes.body },
-        { status: statsRes.status, headers: { "Cache-Control": CACHE_HEADER } },
+        { error: true, status: statsRes.status, message: "Chess.com stats fetch failed", body: statsRes.body },
+        { status: 200, headers: { "Cache-Control": CACHE_HEADER } },
       );
     }
 
@@ -104,8 +104,8 @@ export async function GET() {
     return NextResponse.json(result, { headers: { "Cache-Control": CACHE_HEADER } });
   } catch (error) {
     return NextResponse.json(
-      { error: true, status: 500, body: error instanceof Error ? error.message : String(error) },
-      { status: 500, headers: { "Cache-Control": CACHE_HEADER } },
+      { error: true, status: 500, message: "Chess.com API route exception", body: error instanceof Error ? error.message : String(error) },
+      { status: 200, headers: { "Cache-Control": CACHE_HEADER } },
     );
   }
 }

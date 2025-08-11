@@ -4,22 +4,21 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Trophy, Swords, ExternalLink, Target } from "lucide-react";
 
-type ChessRecord = { win?: number; loss?: number; draw?: number } | null;
-
-type ChessComData = {
-  username: string | null;
-  name: string | null;
-  avatar: string | null;
-  title: string | null;
-  countryCode: string | null;
-  profileUrl: string | null;
-  ratings: { rapid: number | null; blitz: number | null; bullet: number | null; tactics: number | null };
-  record: { rapid: ChessRecord; blitz: ChessRecord; bullet: ChessRecord };
-  fetchedAt?: string | null;
-  error?: boolean;
-  status?: number;
-  body?: string;
+export type RecordWL = { win: number; loss: number; draw: number };
+export type Ratings = { rapid?: number | null; blitz?: number | null; bullet?: number | null; tactics?: number | null };
+export type ChessComData = {
+  username: string;
+  name?: string | null;
+  avatar?: string | null;
+  title?: string | null;
+  countryCode?: string | null;
+  profileUrl: string;
+  ratings: Ratings;
+  record?: { rapid?: RecordWL; blitz?: RecordWL; bullet?: RecordWL };
+  fetchedAt?: string;
 };
+type ChessComError = { error: true; status?: number; message?: string; body?: string };
+type ChessComResponse = ChessComData | ChessComError;
 
 const nf = new Intl.NumberFormat("fr-FR");
 
@@ -43,7 +42,7 @@ function formatWhen(iso?: string | null) {
   return `il y a ${j} j`;
 }
 
-function RecordLine({ rec }: { rec: ChessRecord }) {
+function RecordLine({ rec }: { rec: RecordWL | null | undefined }) {
   if (!rec) return <span className="text-xs text-slate-400">—</span>;
   const w = rec.win ?? 0;
   const l = rec.loss ?? 0;
@@ -55,25 +54,27 @@ function RecordLine({ rec }: { rec: ChessRecord }) {
 
 export default function ChessComCard() {
   const [data, setData] = useState<ChessComData | null>(null);
-  const [error, setError] = useState<ChessComData | null>(null);
+  const [err, setErr] = useState<string | null>(null);
 
   useEffect(() => {
     const ctrl = new AbortController();
     (async () => {
       try {
         const res = await fetch("/api/chesscom", { signal: ctrl.signal, cache: "no-store" });
-        const json = (await res.json()) as ChessComData;
-        if (!res.ok || json?.error) setError(json);
-        else setData(json);
+        const json: ChessComResponse = await res.json();
+        if ("error" in json) {
+          throw new Error(json.message || json.body || `Chess.com API error (${json.status ?? res.status})`);
+        }
+        setData(json);
       } catch (e) {
-        if (!ctrl.signal.aborted) setError({ error: true, body: e instanceof Error ? e.message : String(e) });
+        if (!ctrl.signal.aborted) setErr(e instanceof Error ? e.message : String(e));
       }
     })();
     return () => ctrl.abort();
   }, []);
 
   // Loading skeleton
-  if (!data && !error) {
+  if (!data && !err) {
     return (
       <div className={cn("group relative rounded-3xl p-[1px]",
         "bg-gradient-to-r from-emerald-500/30 via-cyan-500/30 to-sky-500/30")}
@@ -104,11 +105,11 @@ export default function ChessComCard() {
   }
 
   // Error
-  if (error) {
+  if (err) {
     return (
       <div className="rounded-3xl border border-rose-600/40 bg-rose-900/20 p-6 sm:p-7 text-rose-200" role="alert">
         <div className="mb-2 font-semibold">Erreur Chess.com</div>
-        <div className="text-sm/6 text-rose-200/90">{error.body || "Erreur lors de la récupération des données."}</div>
+        <div className="text-sm/6 text-rose-200/90">{err}</div>
       </div>
     );
   }
@@ -170,9 +171,9 @@ export default function ChessComCard() {
 
         {/* KPIs */}
         <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3 md:grid-cols-4">
-          <Kpi title="Rapid" value={data?.ratings.rapid} record={data?.record.rapid} color="text-white" />
-          <Kpi title="Blitz" value={data?.ratings.blitz} record={data?.record.blitz} color="text-white" iconPath="/time-blitz.svg" />
-          <Kpi title="Bullet" value={data?.ratings.bullet} record={data?.record.bullet} color="text-white" iconPath="/time-bullet.svg" />
+          <Kpi title="Rapid" value={data?.ratings.rapid ?? null} record={data?.record?.rapid} color="text-white" />
+          <Kpi title="Blitz" value={data?.ratings.blitz ?? null} record={data?.record?.blitz} color="text-white" iconPath="/time-blitz.svg" />
+          <Kpi title="Bullet" value={data?.ratings.bullet ?? null} record={data?.record?.bullet} color="text-white" iconPath="/time-bullet.svg" />
           {typeof data?.ratings.tactics === "number" ? (
             <Kpi title="Tactics" value={data?.ratings.tactics} record={null} color="text-white" />
           ) : null}
@@ -182,7 +183,7 @@ export default function ChessComCard() {
   );
 }
 
-function Kpi({ title, value, record, color, iconPath }: { title: string; value: number | null | undefined; record: ChessRecord; color?: string; iconPath?: string }) {
+function Kpi({ title, value, record, color, iconPath }: { title: string; value: number | null | undefined; record: RecordWL | null | undefined; color?: string; iconPath?: string }) {
   return (
     <div className="rounded-2xl bg-slate-800/60 p-4">
       <div className="flex items-center gap-2 text-slate-400">
