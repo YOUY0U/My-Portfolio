@@ -9,7 +9,7 @@ export default function Projects() {
             Mes Projets
           </h2>
           <p className="text-xl text-slate-400 text-center mb-16 max-w-2xl mx-auto">
-            Découvrez quelques-uns de mes projets techniques, allant de l'analyse des vulnérabilités web à la mise en place d'architectures cloud et au développement de solutions robotiques.
+            Découvrez quelques-uns de mes projets techniques, allant de l&#39;analyse des vulnérabilités web à la mise en place d&#39;architectures cloud et au développement de solutions robotiques.
           </p>
           
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">

@@ -96,7 +96,7 @@ export default function ExperienceDrawer({ experience, onClose }: ExperienceDraw
                 id={`drawer-title-${experience.id}`}
                 className="text-2xl font-bold text-white"
               >
-                Détails de l'expérience
+                Détails de l&#39;expérience
               </h2>
               <button
                 ref={firstFocusableRef}

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { Trophy, Swords, ExternalLink, Target } from "lucide-react";
+import { ExternalLink, Target } from "lucide-react";
 
 export type RecordWL = { win: number; loss: number; draw: number };
 export type Ratings = { rapid?: number | null; blitz?: number | null; bullet?: number | null; tactics?: number | null };
@@ -58,12 +58,12 @@ export default function ChessComCard() {
 
   useEffect(() => {
     const ctrl = new AbortController();
-    (async () => {
+    void (async () => {
       try {
         const res = await fetch("/api/chesscom", { signal: ctrl.signal, cache: "no-store" });
-        const json: ChessComResponse = await res.json();
+        const json = (await res.json()) as unknown as ChessComResponse;
         if ("error" in json) {
-          throw new Error(json.message || json.body || `Chess.com API error (${json.status ?? res.status})`);
+          throw new Error(json.message ?? json.body ?? `Chess.com API error (${json.status ?? res.status})`);
         }
         setData(json);
       } catch (e) {
@@ -194,7 +194,7 @@ function Kpi({ title, value, record, color, iconPath }: { title: string; value: 
         )}
         <span>{title}</span>
       </div>
-      <div className={cn("mt-1 text-3xl font-extrabold", color || "text-white")}>{typeof value === "number" ? nf.format(value) : "—"}</div>
+      <div className={cn("mt-1 text-3xl font-extrabold", color ?? "text-white")}>{typeof value === "number" ? nf.format(value) : "—"}</div>
       <div className="mt-1"><RecordLine rec={record} /></div>
     </div>
   );

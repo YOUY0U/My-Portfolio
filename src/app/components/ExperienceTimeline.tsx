@@ -34,7 +34,7 @@ export default function ExperienceTimeline() {
                 Mes Expériences
               </h2>
               <p className="text-xl text-slate-400 max-w-2xl mx-auto">
-                Mon parcours professionnel, de mes premiers pas dans le domaine technique jusqu'à mes expériences les plus récentes en DevSecOps.
+                Mon parcours professionnel, de mes premiers pas dans le domaine technique jusqu&#39;à mes expériences les plus récentes en DevSecOps.
               </p>
             </motion.div>
 

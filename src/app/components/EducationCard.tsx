@@ -8,10 +8,9 @@ interface EducationCardProps {
   annee: string;
   details: string;
   logo: string;
-  index: number;
 }
 
-export default function EducationCard({ diplome, etablissement, annee, details, logo, index }: EducationCardProps) {
+export default function EducationCard({ diplome, etablissement, annee, details, logo }: EducationCardProps) {
   return (
     <div className="bg-slate-900 rounded-xl p-6 hover:bg-slate-800 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl border border-slate-700 hover:border-cyan-500"
     >

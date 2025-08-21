@@ -80,9 +80,14 @@ export async function GET(request: Request) {
           cache: "no-store",
         });
         if (r.ok) {
-          const jr = await r.json();
+          type RankingJson = { position?: unknown; rank?: unknown; items?: Array<{ position?: unknown; rank?: unknown } > };
+          const jr = (await r.json()) as RankingJson;
+          const toNum = (v: unknown): number | null => {
+            const n = typeof v === "string" || typeof v === "number" ? Number(v) : NaN;
+            return Number.isFinite(n) ? n : null;
+          };
           // selon les versions, la position peut être sous 'position', 'rank' ou dans 'items[0]'
-          rank = jr.position ?? jr.rank ?? jr?.items?.[0]?.position ?? jr?.items?.[0]?.rank ?? null;
+          rank = toNum(jr.position) ?? toNum(jr.rank) ?? toNum(jr?.items?.[0]?.position) ?? toNum(jr?.items?.[0]?.rank);
         }
       } catch {
         // ignorer les erreurs de ranking
@@ -92,7 +97,7 @@ export async function GET(request: Request) {
     const result = { elo, level, game, country, rank } as const;
     memoryCache.set(cacheKey, { ts: now, data: { ...result } });
     return NextResponse.json(result);
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { elo: null, level: null, game: "cs2", error: "Exception côté serveur" },
       { status: 200 },

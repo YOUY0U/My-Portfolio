@@ -12,6 +12,21 @@ async function sleep(ms: number) {
   return new Promise((r) => setTimeout(r, ms));
 }
 
+type ChessComProfile = {
+  username?: string;
+  name?: string | null;
+  avatar?: string | null;
+  title?: string | null;
+  country?: string | null;
+};
+
+type ChessComStats = {
+  chess_rapid?: { last?: { rating?: number }; record?: Record<string, number> };
+  chess_blitz?: { last?: { rating?: number }; record?: Record<string, number> };
+  chess_bullet?: { last?: { rating?: number }; record?: Record<string, number> };
+  tactics?: { highest?: { rating?: number }; best?: { rating?: number } };
+};
+
 async function fetchJsonWithRetry(url: string) {
   let res: Response | null = null;
   for (let i = 0; i < 2; i++) {
@@ -25,7 +40,7 @@ async function fetchJsonWithRetry(url: string) {
 
   if (!res) return { ok: false as const, status: 502, body: "no response" };
 
-  const ct = res.headers.get("content-type") || "";
+  const ct = res.headers.get("content-type") ?? "";
   const isJson = ct.includes("application/json");
 
   if (!res.ok || !isJson) {
@@ -46,7 +61,7 @@ function extractCountryCode(profileCountryUrl?: string | null): string | null {
 
 export async function GET() {
   try {
-    const base = process.env.CHESSCOM_BASE || "https://api.chess.com/pub";
+    const base = process.env.CHESSCOM_BASE ?? "https://api.chess.com/pub";
     const username = process.env.CHESSCOM_USERNAME;
 
     if (!username) {
@@ -77,15 +92,15 @@ export async function GET() {
       );
     }
 
-    const profile = profileRes.json as any;
-    const stats = statsRes.json as any;
+    const profile = profileRes.json as ChessComProfile;
+    const stats = statsRes.json as ChessComStats;
 
     const result = {
       username: profile?.username ?? null,
       name: profile?.name ?? null,
       avatar: profile?.avatar ?? null,
       title: profile?.title ?? null,
-      countryCode: extractCountryCode(profile?.country) ?? null,
+      countryCode: extractCountryCode(profile?.country ?? null),
       profileUrl: profile?.username ? `https://www.chess.com/member/${encodeURIComponent(profile.username)}` : null,
       ratings: {
         rapid: stats?.chess_rapid?.last?.rating ?? null,

@@ -33,7 +33,11 @@ export default function Skills(_props?: SkillsProps) {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {skills.filter(category => category.name !== "Langues").map((category) => {
               const normalized = (category.items ?? [])
-                .filter((s) => s && ((s as Skill).name || (s as Skill).icon || (s as Skill).emoji))
+                .filter((s) => {
+                  if (!s) return false;
+                  const candidate = (s as Skill).name ?? (s as Skill).icon ?? (s as Skill).emoji;
+                  return Boolean(candidate);
+                })
                 .map((s, i) => {
                   const name = (s as Skill).name ?? `Skill ${i + 1}`;
                   const icon = (s as Skill).icon ?? `/icons/${name.toLowerCase().replace(/\s+/g, '-')}.svg`;
@@ -50,7 +54,7 @@ export default function Skills(_props?: SkillsProps) {
                 <div className="grid grid-cols-2 gap-4">
                   {normalized.map((skill, idx) => (
                     <div 
-                      key={skill.name || `skill-${idx}`}
+                      key={skill.name ?? `skill-${idx}`}
                       className="flex flex-col items-center p-4 bg-slate-700 rounded-lg hover:bg-slate-600 transition-all duration-300 transform hover:scale-105"
                     >
                       <div className="text-4xl mb-3">
@@ -69,7 +73,11 @@ export default function Skills(_props?: SkillsProps) {
           {/* Section Langues séparée et plus grande */}
           {skills.filter(category => category.name === "Langues").map((category) => {
             const normalized = (category.items ?? [])
-              .filter((s) => s && ((s as Skill).name || (s as Skill).icon || (s as Skill).emoji))
+              .filter((s) => {
+                if (!s) return false;
+                const candidate = (s as Skill).name ?? (s as Skill).icon ?? (s as Skill).emoji;
+                return Boolean(candidate);
+              })
               .map((s, i) => {
                 const name = (s as Skill).name ?? `Skill ${i + 1}`;
                 const icon = (s as Skill).icon ?? `/icons/${name.toLowerCase().replace(/\s+/g, '-')}.svg`;
@@ -83,10 +91,10 @@ export default function Skills(_props?: SkillsProps) {
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                   {normalized.map((skill, idx) => {
-                    const displayName = (skill.name as string).split('\n')[0];
+                    const displayName = String(skill.name ?? '').split('\n')[0];
                     return (
                     <div 
-                      key={skill.name || `lang-skill-${idx}`}
+                      key={skill.name ?? `lang-skill-${idx}`}
                       className="flex flex-col items-center p-6 bg-slate-700 rounded-lg hover:bg-slate-600 transition-all duration-300 transform hover:scale-105"
                     >
                       <div className="w-16 h-16 mb-4 flex items-center justify-center">

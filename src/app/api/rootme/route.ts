@@ -20,7 +20,7 @@ export async function GET() {
   try {
     const id = process.env.ROOTME_AUTHOR_ID;
     const apiKey = process.env.ROOTME_API_KEY;
-    const base = process.env.ROOTME_BASE || "https://api.www.root-me.org";
+    const base = process.env.ROOTME_BASE ?? "https://api.www.root-me.org";
 
     if (!id || !apiKey) {
       return NextResponse.json(
@@ -57,7 +57,7 @@ export async function GET() {
       );
     }
 
-    const contentType = res.headers.get("content-type") || "";
+    const contentType = res.headers.get("content-type") ?? "";
     const isJson = contentType.includes("application/json");
 
     if (!res.ok) {
@@ -76,7 +76,15 @@ export async function GET() {
       );
     }
 
-    const data = (await res.json()) as any;
+    type RootMeAuthor = {
+      nom?: string | null;
+      score?: unknown;
+      position?: unknown;
+      challenges?: unknown;
+      avatar?: string | null;
+    };
+
+    const data = (await res.json()) as unknown as RootMeAuthor;
 
     const toNumber = (v: unknown): number | null => {
       if (v === null || v === undefined) return null;
@@ -88,9 +96,9 @@ export async function GET() {
       login: data?.nom ?? null,
       score: toNumber(data?.score),
       rank: toNumber(data?.position),
-      solved: Array.isArray(data?.challenges) ? data.challenges.length : null,
+      solved: Array.isArray(data?.challenges as unknown[]) ? (data?.challenges as unknown[]).length : null,
       avatar: data?.avatar ?? null,
-      profileUrl: data?.nom ? `https://www.root-me.org/${encodeURIComponent(data.nom)}` : null,
+      profileUrl: data?.nom ? `https://www.root-me.org/${encodeURIComponent(String(data.nom))}` : null,
       fetchedAt: new Date().toISOString(),
     } as const;
 

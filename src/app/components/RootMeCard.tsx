@@ -22,25 +22,34 @@ export default function RootMeCard() {
 
   useEffect(() => {
     let cancelled = false;
-    async function run() {
+    void (async function run() {
       try {
         const res = await fetch("/api/rootme", { cache: "no-store" });
         if (!res.ok) {
           throw new Error(`Erreur API (${res.status})`);
         }
-        const json = (await res.json()) as RootMeData;
+        const json = (await res.json()) as Partial<RootMeData> & { error?: string };
         if (!cancelled) {
-          if ((json as any).error) {
-            setError((json as any).error as string);
+          if (typeof json.error === "string" && json.error.length > 0) {
+            setError(json.error);
           } else {
-            setData(json);
+            // Normalisation minimale pour satisfaire le typage strict
+            setData({
+              login: json.login ?? "",
+              score: json.score ?? null,
+              rank: json.rank ?? null,
+              solvedCount: typeof json.solvedCount === "number" ? json.solvedCount : 0,
+              avatar: json.avatar ?? null,
+              categories: Array.isArray(json.categories) ? json.categories : [],
+              profileUrl: json.profileUrl ?? "#",
+              fetchedAt: json.fetchedAt ?? new Date().toISOString(),
+            });
           }
         }
       } catch (e) {
         if (!cancelled) setError(e instanceof Error ? e.message : "Erreur inconnue");
       }
-    }
-    run();
+    })();
     return () => {
       cancelled = true;
     };

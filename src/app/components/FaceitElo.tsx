@@ -99,14 +99,14 @@ export default function FaceitElo({ nickname: nicknameProp }: Props) {
         }
       } catch (err: unknown) {
         if (!isMounted) return;
-        if ((err as any)?.name === "AbortError") return;
+        if (err && typeof err === 'object' && 'name' in err && (err as { name?: string }).name === 'AbortError') return;
         setPayload({ elo: null, level: null, game: "cs2", error: "Erreur réseau" });
       } finally {
         if (isMounted) setIsLoading(false);
       }
     };
 
-    fetchElo();
+    void fetchElo();
     return () => {
       isMounted = false;
       controller.abort();
@@ -142,13 +142,6 @@ export default function FaceitElo({ nickname: nicknameProp }: Props) {
   const deltaDisplay = eloDelta == null || eloDelta === 0 ? null : `${eloDelta > 0 ? "+" : ""}${numberFmt.format(eloDelta)}`;
   const deltaColor = eloDelta == null || eloDelta === 0 ? "text-slate-400" : eloDelta > 0 ? "text-emerald-400" : "text-rose-400";
 
-  // drapeau (emoji) à partir du code pays si fourni (fallback 🇪🇺)
-  const country = (payload?.country ?? "").toUpperCase();
-  const flagEmoji = (() => {
-    if (!country || country.length !== 2) return "🇪🇺";
-    const codePoints = country.split("").map((c) => 127397 + c.charCodeAt(0));
-    return String.fromCodePoint(...codePoints);
-  })();
   const rankDisplay = payload?.rank != null ? `#${numberFmt.format(payload.rank)}` : null;
 
   return (
