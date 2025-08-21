@@ -54,12 +54,7 @@ export default function BadgesStats() {
             <ChessComCard />
           </div>
 
-          {/* Placeholder pour futures stats */}
-          <div className="mt-12 text-center">
-            <p className="text-slate-500 text-sm">
-              Plus de statistiques à venir : GitHub, HackerRank, LeetCode...
-            </p>
-          </div>
+          {/* Placeholder retiré */}
         </div>
       </div>
     </section>

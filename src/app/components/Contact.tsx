@@ -1,8 +1,73 @@
+import Image from "next/image";
+
 export default function Contact() {
   return (
     <section id="contact" className="min-h-screen bg-slate-800 py-20">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto text-center">
+          <div className="mb-8 -mt-16 md:-mt-24 lg:-mt-32 flex flex-col md:flex-row justify-between items-start gap-10">
+            {/* Bloc Fortinet */}
+            <div className="flex flex-col items-center gap-4 w-fit">
+              <div className="flex items-center justify-center w-full">
+                <Image
+                  src="/Fortinet-logo-vector-01.svg"
+                  alt="Fortinet"
+                  width={180}
+                  height={48}
+                />
+              </div>
+              <div className="flex gap-10">
+              {/* Badge 1 - effet médaille */}
+              <div className="group relative w-40 h-40">
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/15 via-white/5 to-transparent ring-1 ring-white/10 shadow-[0_18px_40px_rgba(0,0,0,0.45)]"></div>
+              <div className="absolute inset-0 rounded-full shadow-[inset_0_10px_18px_rgba(255,255,255,0.14),inset_0_-14px_28px_rgba(0,0,0,0.45)] bg-[radial-gradient(ellipse_at_top_left,rgba(255,255,255,0.18),transparent_55%)]"></div>
+              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                <Image
+                  src="/fortinet-certified-associate-cybersecurity.1.png"
+                  alt="Fortinet Certified Associate - Cybersecurity"
+                  width={120}
+                  height={120}
+                  className="rounded-lg shadow-xl ring-1 ring-white/20 transform group-hover:-translate-y-1 transition-transform duration-300"
+                />
+              </div>
+              <div className="pointer-events-none absolute left-3 right-3 top-1 h-1/3 rounded-t-full bg-gradient-to-b from-white/20 to-transparent"></div>
+            </div>
+
+            {/* Badge 2 - effet médaille */}
+            <div className="group relative w-40 h-40">
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/15 via-white/5 to-transparent ring-1 ring-white/10 shadow-[0_18px_40px_rgba(0,0,0,0.45)]"></div>
+              <div className="absolute inset-0 rounded-full shadow-[inset_0_10px_18px_rgba(255,255,255,0.14),inset_0_-14px_28px_rgba(0,0,0,0.45)] bg-[radial-gradient(ellipse_at_top_left,rgba(255,255,255,0.18),transparent_55%)]"></div>
+              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                <Image
+                  src="/fortinet-certified-fundamentals-cybersecurity.png"
+                  alt="Fortinet Certified Fundamentals - Cybersecurity"
+                  width={120}
+                  height={120}
+                  className="rounded-lg shadow-xl ring-1 ring-white/20 transform group-hover:-translate-y-1 transition-transform duration-300"
+                />
+              </div>
+              <div className="pointer-events-none absolute left-3 right-3 top-1 h-1/3 rounded-t-full bg-gradient-to-b from-white/20 to-transparent"></div>
+            </div>
+              </div>
+            </div>
+
+            {/* Bloc MOOC ANSSI */}
+            <div className="flex flex-col items-center md:items-start gap-4 w-fit">
+              <div className="flex items-center justify-center w-full">
+                <Image
+                  src="/anssi.png"
+                  alt="MOOC ANSSI"
+                  width={140}
+                  height={140}
+                  className="rounded-full shadow-lg ring-1 ring-white/10"
+                />
+              </div>
+              <div className="bg-slate-900/60 text-slate-200 px-4 py-2 rounded-lg border border-slate-700">
+                <span className="font-semibold">MOOC ANSSI</span>
+                <span className="ml-2 text-slate-400">(SecNumAcademie)</span>
+              </div>
+            </div>
+          </div>
           <h2 className="text-5xl font-bold text-white mb-4">
             Contactez-moi
           </h2>
