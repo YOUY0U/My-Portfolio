@@ -18,7 +18,7 @@ export default function Formation() {
           </div>
           
           <div className="space-y-6">
-            {educations.map((education, index) => (
+            {educations.map((education) => (
               <EducationCard
                 key={education.id}
                 diplome={education.diplome}
@@ -26,7 +26,6 @@ export default function Formation() {
                 annee={education.annee}
                 details={education.details}
                 logo={education.logo}
-                index={index}
               />
             ))}
           </div>
